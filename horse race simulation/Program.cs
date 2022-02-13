@@ -19,6 +19,10 @@ namespace horse_race_simulation
                 Thread.Sleep(500);
                 WriteLine($"Hi! My name is {p.Name}, My skill level is {p.Skill}. My horse has {p.Horse.Speed} speed and {p.Horse.Stamina} stamina");
             }
+
+            Race race = new Race();
+            race.Start(Participants);
+
         }
 
         public static List<Horseman> CreateParticipants(int n)
