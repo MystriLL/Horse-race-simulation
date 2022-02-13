@@ -13,8 +13,14 @@ namespace horse_race_simulation
         public readonly int Skill; // additional factor that affects horse's performance in the race
         public readonly Horse Horse;
         private bool isRunning;
-        public int DistanceTravelled = 0;
+        public int _totalDistance = 0;
         public event EventHandler<MoveEventArgs> Move;
+
+        public int Distance
+        {
+            get => _totalDistance;
+            private set => _totalDistance = value;
+        }
 
         public Horseman(string name, int skill, Horse horse)
         {
@@ -26,15 +32,17 @@ namespace horse_race_simulation
         public void Run(object sender, EventArgs e)
         {
             Console.WriteLine("Horseman ready to race");
+            int TrackLength = (sender as Race).track.Length;
             isRunning = true;
-            while(isRunning && DistanceTravelled < 1000)
+            while(isRunning && Distance < TrackLength)
             {
                 Thread.Sleep(1000);
                 int distThisTick = rnd.Next(1, this.Horse.Speed);
                 Move(this, new MoveEventArgs(distThisTick));
-                DistanceTravelled += distThisTick;
+                Distance += distThisTick;
                 // to do: implement energy logic
             }
+            Console.WriteLine($"Horseman {Name} has finished the Race!");
         }
     }
 

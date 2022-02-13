@@ -20,7 +20,9 @@ namespace horse_race_simulation
                 WriteLine($"Hi! My name is {p.Name}, My skill level is {p.Skill}. My horse has {p.Horse.Speed} speed and {p.Horse.Stamina} stamina");
             }
 
-            Race race = new Race();
+            Track track1 = new Track(100, participantsNumber);
+
+            Race race = new Race(track1);
             race.Start(Participants);
 
         }

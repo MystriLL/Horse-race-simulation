@@ -16,9 +16,11 @@ namespace horse_race_simulation
 
     class Race
     {
-        public int distance = 1000;
         private EventHandler run = null;
         private Dictionary<string,int> position = new Dictionary<string, int>();
+        public Track track;
+
+        public Race(Track track) { this.track = track; }
 
         public event EventHandler Run
         {
@@ -53,8 +55,8 @@ namespace horse_race_simulation
         public void Move(object sender, EventArgs e)
         {
             var rider = sender as Horseman;
-            position[rider.Name] = rider.DistanceTravelled;  // Updating current position of Horseman
-            if (position[rider.Name] < distance)
+            position[rider.Name] = rider.Distance;  // Updating current position of Horseman
+            if (position[rider.Name] < track.Length)
                 WriteLine($"Horseman {rider.Name} has travelled {position[rider.Name]} metres so far");
             else
             {
