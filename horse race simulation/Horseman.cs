@@ -31,16 +31,18 @@ namespace horse_race_simulation
 
         public void Run(object sender, EventArgs e)
         {
-            Console.WriteLine("Horseman ready to race");
+       //     Console.WriteLine("Horseman ready to race");
+            int ticksNumber = 0;
             int TrackLength = (sender as Race).track.Length;
             isRunning = true;
             while(isRunning && Distance < TrackLength)
             {
                 Thread.Sleep(1000);
+                ticksNumber++;
                 int distThisTick = rnd.Next(1, this.Horse.Speed);
                 Move(this, new MoveEventArgs(distThisTick));
                 Distance += distThisTick;
-                // to do: implement energy logic
+                // to do: implement energy logic and Rider's skill logic
             }
             Console.WriteLine($"Horseman {Name} has finished the Race!");
         }

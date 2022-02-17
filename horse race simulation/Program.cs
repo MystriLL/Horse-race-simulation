@@ -22,7 +22,7 @@ namespace horse_race_simulation
 
             Track track1 = new Track(100, participantsNumber);
 
-            Race race = new Race(track1);
+            Race race = new Race(track1, participantsNumber);
             race.Start(Participants);
 
         }
