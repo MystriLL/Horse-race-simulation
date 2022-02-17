@@ -6,7 +6,7 @@ namespace horse_race_simulation
 {
     class Track
     {
-        private string[] TrackGrid;
+        private string[,] TrackGrid;
         private int _length;
         private int Width;
 
@@ -16,6 +16,38 @@ namespace horse_race_simulation
         {
             _length = length;
             Width = participantsNumber;
+            TrackGrid = new string[length+1, 2*Width+1];
+        }
+
+        public void CreateGrid()
+        {
+            for(int i =0; i < 2*Width+1; i++)
+            {
+                for(int j=0; j<Length; j++)
+                {
+                    TrackGrid[j,i] = i % 2 == 0 ? "=" : " ";
+                }
+            }
+        }
+
+        public void RefreshScreen()
+        {
+            PrintTrack();
+        }
+
+        public void PrintTrack()
+        {
+            for (int i = 0; i < 2*Width+1; i++)
+            {
+                if (i % 2 != 0) Console.Write($"{Math.Ceiling((double)i / 2)}:  ");
+                else Console.Write("    ");
+               
+                for (int j = 0; j < Length; j++)
+                {
+                    Console.Write(TrackGrid[j,i]);
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
