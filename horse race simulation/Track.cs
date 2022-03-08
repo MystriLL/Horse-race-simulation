@@ -30,11 +30,8 @@ namespace horse_race_simulation
             }
         }
 
-        public void RefreshScreen(Horseman horseman)
+        public void RefreshScreen()
         {
-            for(int i =0; i<Length; i++) TrackGrid[i, horseman.Horse.Id * 2 + 1] = " ";
-            TrackGrid[horseman.Distance, horseman.Horse.Id * 2 + 1] = "x";
-            Console.Clear();
             PrintTrack();
         }
 
